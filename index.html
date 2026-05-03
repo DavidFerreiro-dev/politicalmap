@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa de política de España</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="icon" href="icon.png" type="image/png" />
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <h1>Mapa Político</h1>
+    <p id="headerSubtitle">España · Posicionamiento ideológico · 2024–2026</p>
+  </div>
+  <div class="header-right">
+    <!-- Search Bar -->
+    <div class="search-wrap" id="searchWrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar partido, líder..." autocomplete="off" />
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
+    <div class="region-switcher" id="regionSwitcher">
+      <div class="region-btn active" data-region="esp" title="España">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Bandera_de_Espa%C3%B1a_%28sin_escudo%29.svg/250px-Bandera_de_Espa%C3%B1a_%28sin_escudo%29.svg.png" alt="España" loading="lazy">
+        <span>España</span>
+      </div>
+      <div class="region-btn" data-region="gal" title="Galicia">
+        <img src="https://www.bandeiragalega.com/img/bgalega.png" alt="Galicia" loading="lazy">
+        <span>Galicia</span>
+      </div>
+      <div class="region-btn" data-region="ue" title="Unión Europea">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="UE" loading="lazy">
+        <span>Unión Europea</span>
+      </div>
+      <div class="region-btn" data-region="usa" title="EE.UU.">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png" alt="EEUU" loading="lazy">
+        <span>EE.UU.</span>
+      </div>
+      <div class="region-btn" data-region="arg" title="Argentina">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/3840px-Flag_of_Argentina.svg.png" alt="Argentina" loading="lazy">
+        <span>Argentina</span>
+      </div>
+      <div class="region-btn" data-region="fra" title="Francia">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1280px-Flag_of_France.svg.png" alt="Francia" loading="lazy">
+        <span>Francia</span>
+      </div>
+      <div class="region-btn" data-region="ger" title="Alemania">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Germany_%283-2%29.svg/1280px-Flag_of_Germany_%283-2%29.svg.png" alt="Alemania" loading="lazy">
+        <span>Alemania</span>
+      </div>
+      <div class="region-btn" data-region="uk" title="Reino Unido">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg" alt="Reino Unido" loading="lazy">
+        <span>Reino Unido</span>
+      </div>
+      <div class="region-btn" data-region="ita" title="Italia">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1280px-Flag_of_Italy.svg.png" alt="Italia" loading="lazy">
+        <span>Italia</span>
+      </div>
+      <div class="region-btn" data-region="chi" title="Chile">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Flag_of_Chile_%281818%E2%80%931912%29.svg/250px-Flag_of_Chile_%281818%E2%80%931912%29.svg.png" alt="Chile" loading="lazy">
+        <span>Chile</span>
+      </div>
+      <div class="region-btn" data-region="per" title="Perú">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Flag_of_Peru_%281825%E2%80%931884%29.svg/960px-Flag_of_Peru_%281825%E2%80%931884%29.svg.png" alt="Perú" loading="lazy">
+        <span>Perú</span>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--q-tl-accent)"></div><span>Izq. Com.</span><span class="legend-full">Izq. Comunitarista</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--q-tr-accent)"></div><span>Der. Com.</span><span class="legend-full">Der. Comunitarista</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--q-bl-accent)"></div><span>Izq. Lib.</span><span class="legend-full">Izq. Liberal</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--q-br-accent)"></div><span>Der. Lib.</span><span class="legend-full">Der. Liberal</span></div>
+    </div>
+    <a class="test-link" href="test.html">Hacer test de afinidad</a>
+  </div>
+</header>
+
+<main>
+  <div class="compass-wrap">
+    
+    <!-- Toolbar Lateral -->
+    <div class="map-toolbar-side" id="filterGroup">
+      <button class="side-btn filter-btn" id="btnAll" onclick="setFilter('all')" title="Ver todos" style="display:flex;">
+        TODOS
+      </button>
+      <button class="side-btn filter-btn" id="btnSeats" onclick="setFilter('seats')" title="Solo representación" style="display:flex;">
+        SOLO REPRESENTACION
+      </button>
+      <button class="side-btn filter-btn estatales-btn" id="btnEstatales" onclick="setFilter('estatales')" title="Fuerzas estatales" style="display:flex;">
+        FUERZAS ESTATALES
+      </button>
+      <div class="side-divider"></div>
+      <button class="side-btn filter-btn" id="btnActuales" onclick="setFilter('actuales')" title="Partidos Actuales" style="display:flex;">
+        ACTUAL
+      </button>
+      <button class="side-btn filter-btn" id="btnHist" onclick="setFilter('hist')" title="Partidos Históricos" style="display:flex;">
+        HISTÓRICO
+      </button>
+      <button class="side-btn filter-btn" id="btnRep2" onclick="setFilter('rep2')" title="Segunda República" style="display:flex;">
+        II REPÚBLICA
+      </button>
+      <button class="side-btn filter-btn chart-btn" id="btnChart" onclick="openChart()" style="display:none;" title="Ver evolución de escaños">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        EVOLUCIÓN ESCAÑOS
+      </button>
+      <button class="side-btn filter-btn chart-btn" id="btnParliament" onclick="openParliament()" style="display:none;" title="Ver Hemiciclo Parlamentario">
+        🏛️ HEMICICLO
+      </button>
+    </div>
+
+    <div class="axis-label-top">◈ Comunitarista / Colectivista</div>
+    <div class="compass-row">
+      <div class="axis-label-side left">◈ Izquierda</div>
+      <div class="compass" id="compass">
+        <div class="compass-inner" id="compassInner">
+          <div class="quadrant q-tl"></div>
+          <div class="quadrant q-tr"></div>
+          <div class="quadrant q-bl"></div>
+          <div class="quadrant q-br"></div>
+          <div class="q-corner tl">Izq.<br>Comunitarista</div>
+          <div class="q-corner tr">Der.<br>Comunitarista</div>
+          <div class="q-corner bl">Izq.<br>Liberal</div>
+          <div class="q-corner br">Der.<br>Liberal</div>
+          <div class="grid-lines" id="gridLines"></div>
+          <div class="axis-h"></div>
+          <div class="axis-v"></div>
+          <svg id="evoTrailSvg" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; display: none; overflow: visible;">
+            <path id="evoTrailPath" fill="none" stroke-width="0.5" stroke-dasharray="1 1" stroke="currentColor" />
+          </svg>
+        </div>
+      </div>
+      <div class="axis-label-side right">Derecha ◈</div>
+    </div>
+    <div class="axis-label-bottom">◈ Liberal / Individualista</div>
+    
+  </div>
+  
+  <!-- Evolution Timeline Slider (shown when a party with history is selected) -->
+  <div class="evolution-bar" id="evolutionBar" style="display:none;">
+    <div class="evo-header">
+      <div class="evo-party-tag" id="evoPartyTag">
+        <img class="evo-party-logo" id="evoPartyLogo" src="" alt=""/>
+        <span class="evo-party-name" id="evoPartyName"></span>
+      </div>
+      <span class="evo-label">Evolución ideológica</span>
+      <button class="evo-close" id="evoCloseBtn" title="Cerrar">✕</button>
+    </div>
+    <div class="evo-slider-wrap">
+      <span class="evo-year-label" id="evoYearStart"></span>
+      <div class="evo-slider-track">
+        <input type="range" id="evoSlider" class="evo-slider" min="0" max="1" step="1" value="0"/>
+        <div class="evo-track-dots" id="evoTrackDots"></div>
+      </div>
+      <span class="evo-year-label" id="evoYearEnd"></span>
+    </div>
+    <div class="evo-current" id="evoCurrent">
+      <span class="evo-current-year" id="evoCurrentYear"></span>
+      <span class="evo-current-pos" id="evoCurrentPos"></span>
+    </div>
+  </div>
+
+  <!-- Side Panel -->
+  <aside class="side-panel">
+    <div class="panel-empty" id="panelEmpty">
+      <div class="party-list-header">
+        <h3>Partidos en <span id="partyListRegionName">España</span></h3>
+        <span class="party-list-total" id="partyListTotal">Total: 0</span>
+      </div>
+      <div class="party-list-scroll" id="partyListScroll">
+        <!-- Se rellena dinámicamente -->
+      </div>
+    </div>
+    <div class="panel-content" id="panelContent">
+      <div class="panel-controls">
+         <button class="panel-action-btn-text" onclick="openComparator()" title="Comparar con otro partido">⚖️ Comparar</button>
+         <button class="panel-action-btn" onclick="deselectAll()" title="Cerrar y volver a la lista" style="margin-left: auto;">✕</button>
+      </div>
+      <div class="panel-hero">
+        <img id="pLeaderImg" src="" alt="" style="display:none;" crossorigin="anonymous" />
+      </div>
+      <div class="panel-header">
+        <div class="panel-logo"><img id="pLogo" src="" alt="" onerror="this.parentElement.classList.add('logo-err')" crossorigin="anonymous" /></div>
+        <div class="panel-header-text">
+          <div class="panel-acronym" id="pAcronym"></div>
+          <div class="panel-name" id="pName"></div>
+          <div class="panel-leader" id="pLeaderWrap">
+            <span id="pLeader"></span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-value" id="pSeats">—</div>
+            <div class="stat-label">Escaños</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="pFounded">—</div>
+            <div class="stat-label">Fundación</div>
+          </div>
+        </div>
+        <div class="position-bar" id="positionBars"></div>
+        <div class="ideology-tags" id="ideologyTags"></div>
+        <p class="panel-desc" id="pDesc"></p>
+        <div class="programa-section">
+          <h3>Programa por áreas</h3>
+          <div id="programaItems"></div>
+        </div>
+        <div class="members-section" id="membersSection" style="display:none;">
+          <h3>Partidos Miembros</h3>
+          <div class="members-list" id="membersList"></div>
+        </div>
+        <a href="#" id="pWebsite" class="panel-link" target="_blank" rel="noopener">
+          <span>↗</span> Sitio oficial
+        </a>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<!-- Chart Modal -->
+<div class="chart-modal" id="chartModal">
+  <div class="chart-modal-inner">
+    <div class="chart-modal-header">
+      <div>
+        <h2>Evolución histórica de escaños</h2>
+        <p class="chart-subtitle">Fuerzas estatales · Congreso de los Diputados</p>
+      </div>
+      <button class="chart-close-btn" onclick="closeChart()">✕</button>
+    </div>
+    <div class="chart-toggles" id="chartToggles"></div>
+    <div class="chart-canvas-wrap">
+      <canvas id="chartCanvas"></canvas>
+    </div>
+    <div class="chart-legend" id="chartLegend"></div>
+  </div>
+</div>
+
+<!-- Parliament Modal -->
+<div class="chart-modal" id="parliamentModal">
+  <div class="chart-modal-inner" style="max-width: 800px;">
+    <div class="chart-modal-header">
+      <div>
+        <h2>Hemiciclo Parlamentario</h2>
+        <p class="chart-subtitle" id="parliamentSubtitle">Reparto de escaños de las fuerzas con representación</p>
+      </div>
+      <button class="chart-close-btn" onclick="closeParliament()">✕</button>
+    </div>
+    <div class="chart-canvas-wrap" style="position: relative; height: 320px; display:flex; justify-content:center; align-items:flex-end; padding-bottom: 20px;">
+       <svg id="parliamentSvg" width="100%" height="100%" viewBox="-120 -120 240 120" style="overflow:visible;"></svg>
+       <div id="parliamentCenterText" style="position:absolute; bottom: 20px; left:50%; transform:translateX(-50%); text-align:center;">
+          <div style="font-size:36px; font-weight:bold;" id="parliamentTotalSeats">0</div>
+          <div style="font-size:12px; color:var(--muted); text-transform:uppercase;">Escaños</div>
+       </div>
+    </div>
+    <div class="chart-legend" id="parliamentLegend" style="justify-content: center; flex-wrap: wrap;"></div>
+  </div>
+</div>
+
+<!-- Comparator Modal -->
+<div class="chart-modal" id="comparatorModal">
+  <div class="chart-modal-inner comparator-modal-inner">
+   <div class="chart-modal-header comparator-modal-header">
+      <div>
+        <h2>Comparador de Partidos</h2>
+      </div>
+      <div class="comparator-header-controls">
+        <div class="comp-search-wrap" id="compSearchWrap">
+          <input
+            type="text"
+            id="compSearchInput"
+            class="comp-search-input"
+            placeholder="Buscar partido para comparar..."
+            autocomplete="off"
+          />
+          <div class="comp-search-dropdown" id="compSearchDropdown"></div>
+        </div>
+        <button class="chart-close-btn" onclick="closeComparator()">✕</button>
+      </div>
+    </div>
+   <div class="comparator-body">
+     <div class="comparator-affinity-row">
+       <div id="compDistanceBadge" class="comp-distance-badge comparator-affinity-badge" style="display:none;"></div>
+     </div>
+     <div class="comparator-grid">
+       <div class="comparator-col comparator-col-left" id="compParty1"></div>
+       <div class="comparator-col comparator-col-right">
+          <div id="compParty2" style="display:none;"></div>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

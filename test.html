@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test de Afinidad Politica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: rgba(15, 16, 24, 0.85);
+      --text: #e0e6ed;
+      --muted: #8b92a5;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #8bb5ff;
+      --accent-2: #ffb35c;
+      --q-tl: rgba(142, 68, 173, 0.12);
+      --q-tr: rgba(41, 128, 185, 0.12);
+      --q-bl: rgba(230, 126, 34, 0.12);
+      --q-br: rgba(241, 196, 15, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, #1a1b26 0%, var(--bg) 60%);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 28px 40px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #fff 40%, #8888bb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(300px, 1.1fr) minmax(280px, 0.9fr);
+      gap: 24px;
+      padding: 24px 40px 40px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 10px;
+      color: var(--muted);
+      pointer-events: none;
+      font-size: 12px;
+    }
+
+    select {
+      appearance: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text);
+      padding: 8px 28px 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      min-width: 180px;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: rgba(255,255,255,0.35);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+    }
+
+    select option {
+      color: #0b0c10;
+      background: #f4f6ff;
+    }
+
+    .nav-link {
+      margin-left: auto;
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .progress {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.25s ease;
+    }
+
+    .question {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .question h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .scale label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 8px 6px;
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--muted);
+      transition: all 0.15s ease;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .scale input {
+      display: none;
+    }
+
+    .scale input:checked + span {
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .scale span {
+      width: 100%;
+      text-align: center;
+      border-radius: 8px;
+      padding: 6px 0;
+    }
+
+    .question-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: rgba(100,200,255,0.12);
+      border: 1px solid rgba(100,200,255,0.3);
+      color: #bfe5ff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    button:hover { background: rgba(100,200,255,0.2); }
+    button.secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+
+    .map {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(135deg, var(--q-tl) 0 50%, var(--q-tr) 50% 100%),
+                  linear-gradient(225deg, var(--q-bl) 0 50%, var(--q-br) 50% 100%);
+      background-blend-mode: screen;
+      overflow: hidden;
+    }
+
+    .map-label {
+      position: absolute;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .map-label.left {
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: left top;
+    }
+
+    .map-label.right {
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: right top;
+    }
+
+    .map-label.top {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .map-label.bottom {
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .map-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .map-party-logos {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .map-party-logo {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(10, 12, 20, 0.7);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 0 2px rgba(255,255,255,0.08);
+      padding: 3px;
+      transform: translate(-50%, -50%);
+    }
+
+    .map-line {
+      stroke: rgba(255,255,255,0.35);
+      stroke-width: 0.6;
+      stroke-dasharray: 2 2;
+    }
+
+    .map-party-dot {
+      fill: rgba(255,255,255,0.9);
+      stroke: rgba(0,0,0,0.35);
+      stroke-width: 0.6;
+    }
+
+    .map::before, .map::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .map::before { width: 100%; height: 1px; top: 50%; left: 0; }
+    .map::after { height: 100%; width: 1px; left: 50%; top: 0; }
+
+    .map-point {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+      transform: translate(-50%, -50%);
+      display: none;
+      z-index: 3;
+    }
+
+    .map-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .result-summary {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .match-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .match-card {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .match-card img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .match-info h4 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .match-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .match-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 9px;
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .footer-note {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      header { padding: 20px; }
+    }
+
+    @media (max-width: 560px) {
+      header { padding: 16px; }
+      main { padding: 16px; }
+      .question { padding: 12px; }
+      .scale { grid-template-columns: 1fr 1fr 1fr; }
+      .question-footer { flex-direction: column; gap: 6px; }
+      .map { max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Test de Afinidad Politica</h1>
+    <p>Responde y descubre tu posicion en el mapa ideologico</p>
+    <div class="controls">
+      <div class="control-group">
+        <div class="control-label">Region</div>
+        <div class="select-wrap">
+          <select id="regionSelect"></select>
+        </div>
+      </div>
+      <div class="control-group" id="eraFilterGroup" style="display: none;">
+        <div class="control-label">Época</div>
+        <div class="select-wrap">
+          <select id="eraSelect">
+            <option value="all">Todos</option>
+            <option value="actuales" selected>Actual</option>
+            <option value="hist">Histórico</option>
+            <option value="rep2">II República</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="control-label">Modo</div>
+        <div class="select-wrap">
+          <select id="testMode">
+            <option value="simple">Test simple (5)</option>
+            <option value="medio">Test medio (13)</option>
+            <option value="completo">Test completo (25)</option>
+          </select>
+        </div>
+      </div>
+      <a class="nav-link" href="index.html">Volver al mapa</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="progress">
+        <div class="control-label" id="progressText">0 / 5</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div id="questions"></div>
+      <div class="actions">
+        <button id="btnCalculate">Calcular resultado</button>
+        <button class="secondary" id="btnReset">Reiniciar</button>
+      </div>
+      <div class="footer-note">Tus respuestas se usan solo en este navegador.</div>
+    </section>
+
+    <section class="card">
+      <div class="map" id="map">
+        <svg class="map-lines" id="mapLines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+        <div class="map-party-logos" id="mapLogos"></div>
+        <div class="map-point" id="mapPoint"></div>
+        <div class="map-label top">Comunitarista</div>
+        <div class="map-label bottom">Liberal / Individualista</div>
+        <div class="map-label left">Izquierda</div>
+        <div class="map-label right">Derecha</div>
+      </div>
+      <div class="result-summary" id="resultSummary">Responde el test para ver tu posicion y los partidos mas cercanos.</div>
+      <div class="match-list" id="matchList"></div>
+    </section>
+  </main>
+
+  <script>
+    var DB_URL = 'database.json';
+    var db = null;
+
+    var REP2_IDS = [
+      'ceda_esp', 'ceda', 're_esp', 're', 'ct_30s_esp', 'ct_30s', 'ctc_30s', 'ctc_30s_esp',
+      'fe_jons_30s', 'fe_jons_esp', 'dlr_esp', 'dlr', 'prr_esp', 'prr', 'ir_esp', 'ir',
+      'ur_esp', 'ur', 'psoe_30s', 'pce_30s', 'poum_30s', 'poum', 'cnt_fai', 'cnt'
+    ];
+    var HIST_IDS = [
+      'ucd_esp', 'ucd', 'ap_esp', 'ap', 'pxc_esp', 'pxc', 'csd_esp', 'csd', 'pr_esp', 'pr',
+      'prplus', 'prplus_esp', 'cdc_esp', 'cdc', 'fa_esp', 'fa', 'ctc_esp', 'ctc', 'ph_esp', 'ph',
+      'anticap_esp', 'anticapitalistas', 'anticap', 'pln_esp', 'pln', 'mes_esp', 'mes',
+      'mes_mallorca', 'pce_trans', 'pce_trans_esp', 'upyd_esp', 'upyd', 'pdecat_esp', 'pdecat',
+      'ceda_esp', 'ceda', 're_esp', 're', 'ct_30s_esp', 'ct_30s', 'ctc_30s', 'ctc_30s_esp',
+      'fe_jons_30s', 'fe_jons_esp', 'dlr_esp', 'dlr', 'prr_esp', 'prr', 'ir_esp', 'ir',
+      'ur_esp', 'ur', 'psoe_30s', 'pce_30s', 'poum_30s', 'poum', 'cnt_fai', 'cnt', 'cj_esp', 'cj'
+    ];
+
+    var REGION_LABELS = {
+      esp: 'ESPAÑA',
+      ue: 'UNION EUROPEA',
+      usa: 'EEUU',
+      arg: 'ARGENTINA',
+      ger: 'ALEMANIA',
+      ita: 'ITALIA',
+      chi: 'CHILE',
+      per: 'PERU',
+      gal: 'GALICIA',
+      fra: 'FRANCIA',
+      uk: 'REINO UNIDO'
+    };
+
+    var ALL_QUESTIONS = [
+      { text: 'El Estado deberia redistribuir mas riqueza aunque suban los impuestos.', x: -0.8, y: 0.2 },
+      { text: 'El mercado libre resuelve mejor los problemas economicos que la intervencion estatal.', x: 0.9, y: -0.2 },
+      { text: 'La identidad cultural y nacional debe protegerse aunque limite ciertas libertades.', x: 0.3, y: 0.8 },
+      { text: 'Los derechos individuales deben estar por encima de tradiciones colectivas.', x: -0.2, y: -0.9 },
+      { text: 'La educacion y sanidad publicas deben ser el eje principal del bienestar.', x: -0.7, y: 0.3 },
+      { text: 'La inmigracion debe restringirse para proteger el empleo local.', x: 0.4, y: 0.7 },
+      { text: 'La justicia social justifica un Estado mas intervencionista.', x: -0.7, y: 0.4 },
+      { text: 'La libertad de empresa es prioritaria incluso si aumenta la desigualdad.', x: 0.8, y: -0.2 },
+      { text: 'La politica exterior debe priorizar la soberania nacional sobre organismos internacionales.', x: 0.5, y: 0.4 },
+      { text: 'Las libertades civiles (expresion, vida privada) deben ampliarse.', x: -0.1, y: -0.8 },
+      { text: 'La transicion ecologica debe acelerarse aunque tenga costes economicos.', x: -0.4, y: 0.2 },
+      { text: 'La seguridad y el orden deben reforzarse incluso con mayor control estatal.', x: 0.2, y: 0.8 },
+      { text: 'La vivienda debe considerarse un derecho con fuerte regulacion publica.', x: -0.6, y: 0.2 },
+      { text: 'La policia necesita mas recursos y autoridad para mantener el orden.', x: 0.3, y: 0.7 },
+      { text: 'Una mayor descentralizacion territorial mejora la democracia.', x: -0.1, y: -0.1 },
+      { text: 'Los sindicatos deben tener mas poder en las decisiones empresariales.', x: -0.6, y: 0.3 },
+      { text: 'La religion deberia tener menos peso en la vida publica.', x: -0.1, y: -0.6 },
+      { text: 'La propiedad privada es un pilar intocable de la sociedad.', x: 0.7, y: -0.2 },
+      { text: 'El Estado debe proteger la industria nacional aunque suban los precios.', x: 0.2, y: 0.4 },
+      { text: 'La libertad de prensa debe protegerse incluso ante discursos ofensivos.', x: -0.2, y: -0.7 },
+      { text: 'Las tradiciones culturales deben preservarse aunque cambien los tiempos.', x: 0.3, y: 0.6 },
+      { text: 'Los servicios publicos pueden gestionarse mejor con empresas privadas.', x: 0.7, y: -0.1 },
+      { text: 'La igualdad de genero requiere politicas activas del Estado.', x: -0.4, y: 0.2 },
+      { text: 'La participacion ciudadana directa deberia tener mas peso.', x: -0.2, y: -0.2 },
+      { text: 'La defensa nacional debe reforzarse aunque implique mayor gasto.', x: 0.3, y: 0.6 }
+    ];
+
+    var MODE_CONFIG = {
+      simple: 5,
+      medio: 13,
+      completo: 25
+    };
+
+    var currentQuestions = [];
+
+    function buildRegionOptions() {
+      var select = document.getElementById('regionSelect');
+      select.innerHTML = '';
+      var regions = {};
+
+      if (db && db.parties) {
+        for (var i = 0; i < db.parties.length; i++) {
+          if (db.parties[i].region && !db.parties[i].region.includes('_hidden')) {
+            regions[db.parties[i].region] = true;
+          }
+        }
+      }
+
+      var keys = Object.keys(regions);
+      if (!keys.length) {
+        keys = ['esp', 'ue', 'usa', 'arg', 'ger', 'ita', 'chi', 'per', 'gal', 'fra', 'uk'];
+      }
+
+      keys.sort();
+      for (var j = 0; j < keys.length; j++) {
+        var key = keys[j];
+        var option = document.createElement('option');
+        option.value = key;
+        option.textContent = REGION_LABELS[key] || key.toUpperCase();
+        select.appendChild(option);
+      }
+      var eraGroup = document.getElementById('eraFilterGroup');
+      if (eraGroup) eraGroup.style.display = (select.value === 'esp') ? 'flex' : 'none';
+    }
+
+    function setMode(mode) {
+      var count = MODE_CONFIG[mode] || MODE_CONFIG.simple;
+      currentQuestions = ALL_QUESTIONS.slice(0, count);
+      buildQuestions();
+      resetForm();
+    }
+
+    function buildQuestions() {
+      var wrapper = document.getElementById('questions');
+      wrapper.innerHTML = '';
+      for (var i = 0; i < currentQuestions.length; i++) {
+        var q = currentQuestions[i];
+        var block = document.createElement('div');
+        block.className = 'question';
+        block.setAttribute('data-index', i);
+
+        var title = document.createElement('h3');
+        title.textContent = (i + 1) + '. ' + q.text;
+        block.appendChild(title);
+
+        var scale = document.createElement('div');
+        scale.className = 'scale';
+
+        for (var v = 1; v <= 5; v++) {
+          var label = document.createElement('label');
+          var input = document.createElement('input');
+          input.type = 'radio';
+          input.name = 'q' + i;
+          input.value = v;
+          input.addEventListener('change', updateProgress);
+
+          var span = document.createElement('span');
+          span.textContent = v;
+
+          label.appendChild(input);
+          label.appendChild(span);
+          scale.appendChild(label);
+        }
+
+        block.appendChild(scale);
+
+        var footer = document.createElement('div');
+        footer.className = 'question-footer';
+        footer.innerHTML = '<span>Muy en desacuerdo</span><span>Muy de acuerdo</span>';
+        block.appendChild(footer);
+
+        wrapper.appendChild(block);
+      }
+    }
+
+    function updateProgress() {
+      var answered = document.querySelectorAll('.question input:checked').length;
+      var total = currentQuestions.length;
+      var percent = Math.round((answered / total) * 100);
+      document.getElementById('progressText').textContent = answered + ' / ' + total;
+      document.getElementById('progressFill').style.width = percent + '%';
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function computeScore() {
+      var totalX = 0;
+      var totalY = 0;
+      var weightX = 0;
+      var weightY = 0;
+
+      for (var i = 0; i < currentQuestions.length; i++) {
+        var input = document.querySelector('input[name="q' + i + '"]:checked');
+        if (!input) return null;
+        var v = Number(input.value);
+        var scale = (v - 3) / 2;
+        totalX += scale * currentQuestions[i].x;
+        totalY += scale * currentQuestions[i].y;
+        weightX += Math.abs(currentQuestions[i].x);
+        weightY += Math.abs(currentQuestions[i].y);
+      }
+
+      var scoreX = weightX ? totalX / weightX : 0;
+      var scoreY = weightY ? totalY / weightY : 0;
+      return {
+        x: clamp(scoreX, -1, 1),
+        y: clamp(scoreY, -1, 1)
+      };
+    }
+
+    function positionPoint(score) {
+      var point = document.getElementById('mapPoint');
+      var x = (score.x + 1) / 2 * 100;
+      var y = (1 - (score.y + 1) / 2) * 100;
+      point.style.left = x + '%';
+      point.style.top = y + '%';
+      point.style.display = 'block';
+    }
+
+    function renderLines(matches, score) {
+      var svg = document.getElementById('mapLines');
+      var logos = document.getElementById('mapLogos');
+      svg.innerHTML = '';
+      logos.innerHTML = '';
+      if (!matches.length) return;
+
+      var userX = (score.x + 1) / 2 * 100;
+      var userY = (1 - (score.y + 1) / 2) * 100;
+      var ns = 'http://www.w3.org/2000/svg';
+
+      for (var i = 0; i < matches.length; i++) {
+        var p = matches[i].party;
+        var px = (p.position.x + 1) / 2 * 100;
+        var py = (1 - (p.position.y + 1) / 2) * 100;
+
+        var line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', userX);
+        line.setAttribute('y1', userY);
+        line.setAttribute('x2', px);
+        line.setAttribute('y2', py);
+        line.setAttribute('class', 'map-line');
+        svg.appendChild(line);
+
+        var dot = document.createElementNS(ns, 'circle');
+        dot.setAttribute('cx', px);
+        dot.setAttribute('cy', py);
+        dot.setAttribute('r', 1.7);
+        dot.setAttribute('class', 'map-party-dot');
+        svg.appendChild(dot);
+
+        var logo = document.createElement('img');
+        logo.crossOrigin = 'anonymous';
+        logo.src = p.logo_url || '';
+        logo.alt = p.acronym || p.name || '';
+        logo.className = 'map-party-logo';
+        logo.style.left = px + '%';
+        logo.style.top = py + '%';
+        logos.appendChild(logo);
+      }
+    }
+
+    function quadrantText(score) {
+      var horiz = score.x < -0.15 ? 'izquierda' : (score.x > 0.15 ? 'derecha' : 'centro');
+      var vert = score.y < -0.15 ? 'liberal/individualista' : (score.y > 0.15 ? 'comunitarista/colectivista' : 'centro');
+      return 'Tu posicion esta en una zona de ' + horiz + ' y tendencia ' + vert + '.';
+    }
+
+    function getMatches(score, region) {
+      if (!db || !db.parties) return [];
+      var era = document.getElementById('eraSelect').value;
+      var list = db.parties.filter(function(p) {
+        if (p.region !== region) return false;
+        if (region === 'esp') {
+          if (era === 'actuales') return HIST_IDS.indexOf(p.id) === -1;
+          if (era === 'rep2') return REP2_IDS.indexOf(p.id) !== -1;
+          if (era === 'hist') return HIST_IDS.indexOf(p.id) !== -1;
+        }
+        return true;
+      });
+      return list.map(function(p) {
+        var dx = score.x - p.position.x;
+        var dy = score.y - p.position.y;
+        return { party: p, dist: Math.sqrt(dx * dx + dy * dy) };
+      }).sort(function(a, b) { return a.dist - b.dist; }).slice(0, 3);
+    }
+
+    function renderMatches(matches, score) {
+      var summary = document.getElementById('resultSummary');
+      var list = document.getElementById('matchList');
+      list.innerHTML = '';
+      renderLines(matches, score || { x: 0, y: 0 });
+
+      if (!matches.length) {
+        summary.textContent = 'No se encontraron partidos para la region seleccionada.';
+        return;
+      }
+
+      summary.textContent = quadrantText(score);
+
+      for (var i = 0; i < matches.length; i++) {
+        var p = matches[i].party;
+        var card = document.createElement('div');
+        card.className = 'match-card';
+
+        var logo = document.createElement('img');
+        logo.crossOrigin = 'anonymous';
+        logo.src = p.logo_url || '';
+        logo.alt = p.name;
+        card.appendChild(logo);
+
+        var info = document.createElement('div');
+        info.className = 'match-info';
+        var title = document.createElement('h4');
+        title.textContent = p.acronym + ' · ' + p.name;
+        info.appendChild(title);
+
+        var meta = document.createElement('div');
+        meta.className = 'match-meta';
+        meta.textContent = 'Lider: ' + (p.leader || 'N/D') + ' · Escanos: ' + p.seats_congress;
+        info.appendChild(meta);
+
+        var desc = document.createElement('div');
+        desc.style.fontSize = '12px';
+        desc.style.color = 'rgba(255,255,255,0.8)';
+        desc.textContent = p.description || '';
+        info.appendChild(desc);
+
+        var tags = document.createElement('div');
+        tags.className = 'match-tags';
+        if (p.ideology && p.ideology.length) {
+          for (var t = 0; t < p.ideology.length; t++) {
+            var tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = p.ideology[t];
+            tags.appendChild(tag);
+          }
+        }
+        info.appendChild(tags);
+
+        card.appendChild(info);
+        list.appendChild(card);
+      }
+    }
+
+    function handleCalculate() {
+      var score = computeScore();
+      if (!score) {
+        alert('Responde todas las preguntas antes de calcular.');
+        return;
+      }
+      var region = document.getElementById('regionSelect').value;
+      positionPoint(score);
+      renderMatches(getMatches(score, region), score);
+    }
+
+    function resetForm() {
+      var inputs = document.querySelectorAll('.question input');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = false;
+      }
+      updateProgress();
+      document.getElementById('mapPoint').style.display = 'none';
+      document.getElementById('mapLines').innerHTML = '';
+      document.getElementById('mapLogos').innerHTML = '';
+      document.getElementById('resultSummary').textContent = 'Responde el test para ver tu posicion y los partidos mas cercanos.';
+      document.getElementById('matchList').innerHTML = '';
+    }
+
+    function downloadTest() {
+      var section = document.querySelectorAll('section.card')[1];
+      if (!section) return;
+      html2canvas(section, { backgroundColor: '#11121a', scale: 2, useCORS: true }).then(function(canvas) {
+        var link = document.createElement('a');
+        link.download = 'mi_resultado_afinidad.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+
+    function init() {
+      fetch(DB_URL)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          db = data;
+          buildRegionOptions();
+        })
+        .catch(function() {
+          buildRegionOptions();
+        });
+
+      setMode(document.getElementById('testMode').value);
+
+      document.getElementById('btnCalculate').addEventListener('click', handleCalculate);
+      document.getElementById('btnReset').addEventListener('click', resetForm);
+      
+      document.getElementById('testMode').addEventListener('change', function(e) {
+        setMode(e.target.value);
+      });
+      document.getElementById('regionSelect').addEventListener('change', function(e) {
+        var region = e.target.value;
+        document.getElementById('eraFilterGroup').style.display = (region === 'esp') ? 'flex' : 'none';
+        var point = document.getElementById('mapPoint');
+        if (point.style.display === 'block') {
+          handleCalculate();
+        }
+      });
+      document.getElementById('eraSelect').addEventListener('change', function() {
+        var point = document.getElementById('mapPoint');
+        if (point.style.display === 'block') {
+          handleCalculate();
+        }
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>
