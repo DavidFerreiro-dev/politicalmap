@@ -125,6 +125,10 @@ function shouldUseLogoProxy(url) {
   var host = getHostFromUrl(url);
   if (!host) return false;
 
+  if (host.indexOf('scontent-') === 0 || host.indexOf('fbcdn.net') !== -1) return true;
+  if (host.indexOf('wixstatic.com') !== -1) return true;
+  if (host.indexOf('wp.com') !== -1 || host.indexOf('wordpress.com') !== -1) return true;
+
   // These hosts often block hotlinking from local file origins.
   var blockedHosts = [
     'pacma.es',
@@ -144,15 +148,31 @@ function shouldUseLogoProxy(url) {
     'www.wplondon.org.uk',
     'europa2024.pirates.cat',
     'forwardparty.com',
-    'www.forwardparty.com'
+    'www.forwardparty.com',
+    'instituciones.sld.cu',
+    'cir-integracion-racial-cuba.org',
+    'somosmascuba.com',
+    'www.somosmascuba.com',
+    'mcliberacion.org',
+    'calleochonews.com',
+    'm.media-amazon.com',
+    'i.ytimg.com',
+    'd3n8a8pro7vhmx.cloudfront.net',
+    'static.wixstatic.com'
   ];
 
   return blockedHosts.indexOf(host) !== -1;
 }
 
-function getSafeLogoUrl(url) {
+function getSafeImageUrl(url, forceProxy) {
   if (!url) return '';
+  if (!/^https?:\/\//i.test(url)) return url;
+  if (forceProxy) return getLogoProxyUrl(url);
   return shouldUseLogoProxy(url) ? getLogoProxyUrl(url) : url;
+}
+
+function getSafeLogoUrl(url) {
+  return getSafeImageUrl(url, false);
 }
 
 function setLogoImage(img, url, failCallback) {
@@ -762,13 +782,19 @@ function selectParty(id) {
   document.getElementById('pLeader').textContent = '\u21b3 ' + (party.leader || '');
   var leaderImgUrl = party.leader_img || '';
   var pLeaderImg = document.getElementById('pLeaderImg');
-  if (leaderImgUrl) {
-    pLeaderImg.src = leaderImgUrl;
-    pLeaderImg.style.display = 'block';
-    pLeaderImg.parentElement.style.display = 'block';
-  } else {
-    pLeaderImg.style.display = 'none';
-    pLeaderImg.parentElement.style.display = 'none';
+  if (pLeaderImg) {
+    pLeaderImg.alt = party.leader || '';
+    if (leaderImgUrl) {
+      pLeaderImg.style.display = 'block';
+      if (pLeaderImg.parentElement) pLeaderImg.parentElement.style.display = 'block';
+      setLogoImage(pLeaderImg, leaderImgUrl, function() {
+        pLeaderImg.style.display = 'none';
+        if (pLeaderImg.parentElement) pLeaderImg.parentElement.style.display = 'none';
+      });
+    } else {
+      pLeaderImg.style.display = 'none';
+      if (pLeaderImg.parentElement) pLeaderImg.parentElement.style.display = 'none';
+    }
   }
 
   document.getElementById('pSeats').textContent = party.seats_congress;
@@ -779,7 +805,7 @@ function selectParty(id) {
   var posDiv = document.getElementById('positionBars');
   posDiv.innerHTML = '';
   var xLbl = party.position.x < 0 ? 'Izquierda' : 'Derecha';
-  var yLbl = party.position.y > 0 ? 'Comunitarista' : 'Liberal';
+  var yLbl = party.position.y > 0 ? 'Comunitarista' : 'Individualista';
   posDiv.appendChild(makePosBar(xLbl, Math.abs(party.position.x), party.position.x >= 0 ? '#2980b9' : '#e74c3c'));
   posDiv.appendChild(makePosBar(yLbl, Math.abs(party.position.y), party.position.y >= 0 ? '#8e44ad' : '#e67e22'));
 
@@ -1410,7 +1436,7 @@ function drawChart(hoverIdx) {
       if (currentChartHistory.presidentLogos && currentChartHistory.presidentLogos[hoverIdx]) {
         var presLogoUrl = getPartyLogoUrl(currentChartHistory.presidentLogos[hoverIdx]);
         if (presLogoUrl) {
-          presLogoHtml = '<img src="' + presLogoUrl + '" class="pres-logo" alt=""/> ';
+          presLogoHtml = '<img src="' + getSafeImageUrl(presLogoUrl, false) + '" class="pres-logo" alt=""/> ';
         } else {
           presLogoHtml = '<span class="pres-icon">🏛</span> ';
         }
@@ -1774,9 +1800,10 @@ function downloadPartyCard() {
   leftCol.style.display = 'flex';
   leftCol.style.flexDirection = 'column';
   
-  var leaderImgHtml = p.leader_img ?
+  var leaderImgUrl = p.leader_img ? getSafeImageUrl(p.leader_img, true) : '';
+  var leaderImgHtml = leaderImgUrl ?
     '<div style="width:100%; height:560px; border-radius:12px; overflow:hidden; background:#111; margin-bottom:20px;">' +
-      '<img src="'+p.leader_img+'" crossorigin="anonymous" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block;">' +
+      '<img src="'+leaderImgUrl+'" crossorigin="anonymous" referrerpolicy="no-referrer" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block;">' +
     '</div>' : '';
   
   leftCol.innerHTML = leaderImgHtml +
@@ -2070,11 +2097,10 @@ function renderComparatorSearchResults(query) {
 
     var logo = document.createElement('img');
     logo.className = 'comp-search-item-logo';
-    logo.src = p.logo_url || '';
     logo.alt = p.acronym || p.name || '';
-    logo.onerror = function() {
-      this.style.display = 'none';
-    };
+    setLogoImage(logo, p.logo_url || '', function() {
+      logo.style.display = 'none';
+    });
 
     var text = document.createElement('div');
     text.className = 'comp-search-item-text';
@@ -2166,8 +2192,9 @@ function renderCompParty(id, containerId) {
   var cont = document.getElementById(containerId);
   
   var leaderImgHtml = '';
-  if (p.leader_img) {
-      leaderImgHtml = '<div class="comp-party-hero"><img src="' + p.leader_img + '" crossorigin="anonymous" alt=""></div>';
+  var safeLeaderUrl = p.leader_img ? getSafeImageUrl(p.leader_img, true) : '';
+  if (safeLeaderUrl) {
+      leaderImgHtml = '<div class="comp-party-hero"><img src="' + safeLeaderUrl + '" crossorigin="anonymous" referrerpolicy="no-referrer" alt=""></div>';
   } else {
     leaderImgHtml = '<div class="comp-party-hero comp-party-hero-empty">Sin foto de líder</div>';
   }

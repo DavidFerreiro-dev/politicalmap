@@ -13,8 +13,8 @@
       "y": {
         "min": -1,
         "max": 1,
-        "label_min": "Liberal / Individualista",
-        "label_max": "Comunitarista / Colectivista"
+        "label_min": "Individualista",
+        "label_max": "Comunitarista"
       }
     },
     "quadrants": {
@@ -29,12 +29,12 @@
         "description": "Tradición, nación y orden social"
       },
       "bottom_left": {
-        "label": "Izquierda Liberal",
+        "label": "Izquierda Individualista",
         "color": "#e67e22",
         "description": "Libertades individuales y justicia progresista"
       },
       "bottom_right": {
-        "label": "Derecha Liberal",
+        "label": "Derecha Individualista",
         "color": "#27ae60",
         "description": "Mercado libre y libertades civiles"
       }
@@ -5900,7 +5900,7 @@
         "exterior": "Aislacionismo extremo centrado exclusivamente en la figura heroica nacional.",
         "medioambiente": "Desplantar toda la vegetación del Perú para transformarlo en un cerro gigante absoluto."
       },
-      "region": "per_hidden"
+      "region": "per"
     },
     {
       "id": "pm_per",
@@ -6968,7 +6968,7 @@
       "id": "pcc_cub",
       "name": "Partido Comunista de Cuba",
       "acronym": "PCC",
-      "founded": "-",
+      "founded": 1965,
       "color": "#D32F2F",
       "color_secondary": "#EF9A9A",
       "logo_url": "https://instituciones.sld.cu/fcmcg/files/2022/02/Logo_del_Partido_Comunista_de_Cuba.svg_.png",
@@ -6983,7 +6983,7 @@
         "Comunismo",
         "Nacionalismo de izquierda"
       ],
-      "seats_congress": 0,
+      "seats_congress": 470,
       "website": "#",
       "description": "Partido gobernante en Cuba. Defiende un modelo de partido único con fuerte control estatal de la economía y amplias restricciones en libertades civiles y políticas.",
       "programa": {
@@ -6999,7 +6999,7 @@
       "id": "parp_cub",
       "name": "Arco Progresista",
       "acronym": "PARP",
-      "founded": "-",
+      "founded": 2009,
       "color": "#C62828",
       "color_secondary": "#EF9A9A",
       "logo_url": "https://cir-integracion-racial-cuba.org/wp-content/uploads/2011/02/parp.jpeg",
@@ -7008,7 +7008,7 @@
         "y": -0.20
       },
       "leader": "Manuel Cuesta Morúa",
-      "leader_img": "https://i0.wp.com/efe.com/wp-content/uploads/2026/02/Manuel-Cuesta-Morua-1.webp?fit=900%2C624&ssl=1",
+      "leader_img": "https://images.squarespace-cdn.com/content/v1/64b24035595f5e1fa3449947/1748698090458-DVXYCA3LH5ZQJBJXGN7D/represion-manuel-cuesta-morua.jpeg",
       "ideology": [
         "Socialdemocracia",
         "Socialismo democrático"
@@ -7029,7 +7029,7 @@
       "id": "psd_cub",
       "name": "Partido Solidaridad Democrática",
       "acronym": "PSD",
-      "founded": "-",
+      "founded": 1992,
       "color": "#1976D2",
       "color_secondary": "#90CAF9",
       "logo_url": "https://upload.wikimedia.org/wikipedia/en/e/ec/DSP_Liberal_International.jpg",
@@ -7037,7 +7037,8 @@
         "x": -0.15,
         "y": -0.10
       },
-      "leader": "No especificado",
+      "leader": "Fernando Sánchez López",
+      "leader_img": "https://static.14ymedio.com/clip/a5c8f725-2bab-4dfc-b462-88db33996684_16-9-aspect-ratio_1200w_0.webp",
       "ideology": [
         "Socioliberalismo",
         "Centrismo"
@@ -7058,7 +7059,7 @@
       "id": "somos_mas_cub",
       "name": "Movimiento Político Somos+",
       "acronym": "SOMOS+",
-      "founded": "-",
+      "founded": 2013,
       "color": "#00ACC1",
       "color_secondary": "#80DEEA",
       "logo_url": "https://www.somosmascuba.com/wp-content/uploads/2025/01/SOMOS-MAS-ElCambioEresTu-LOGO.png",
@@ -7088,7 +7089,7 @@
       "id": "unpacu_cub",
       "name": "Unión Patriótica de Cuba",
       "acronym": "UNPACU",
-      "founded": "-",
+      "founded": 2011,
       "color": "#2E7D32",
       "color_secondary": "#A5D6A7",
       "logo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/UNPACU_Acronym_%26_Name_%26_Flag_Logo_6_-_Patriotic_Union_of_Cuba.jpg",
@@ -7118,7 +7119,7 @@
       "id": "mcl_cub",
       "name": "Movimiento Cristiano Liberación",
       "acronym": "MCL",
-      "founded": "-",
+      "founded": 1988,
       "color": "#F57C00",
       "color_secondary": "#FFCC80",
       "logo_url": "https://mcliberacion.org/logo-mcl/",
@@ -7147,7 +7148,7 @@
       "id": "pdc_cub",
       "name": "Partido Demócrata Cristiano de Cuba",
       "acronym": "PDC",
-      "founded": "-",
+      "founded": 1959,
       "color": "#1565C0",
       "color_secondary": "#90CAF9",
       "logo_url": "https://scontent-mad1-1.xx.fbcdn.net/v/t39.30808-6/504418401_1024700176438557_2403733339175637531_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=BgclYRjKMb0Q7kNvwG47KVv&_nc_oc=Adotm37MYuf7y2Fyr4SF_mVcXBojWm6lvHBsBFPVkjYrowcKrbJkhtbLVIdMKZXV9DU&_nc_zt=23&_nc_ht=scontent-mad1-1.xx&_nc_gid=VRp2Q0slWQ7kh_yEZedsGg&_nc_ss=7b2a8&oh=00_Af6_YR9l2gMuA4yH-Bzs3UrvfT28IndPYSdc6uadvM6HpQ&oe=69FE7ABC",
@@ -7156,6 +7157,7 @@
         "y": 0.45
       },
       "leader": "Elena Larrinaga de Luis",
+      "leader_img": "https://www.memoryofnations.eu/sites/default/files/2021-03/IMG_3912%20JPG.jpg",
       "ideology": [
         "Democracia cristiana"
       ],
@@ -7175,7 +7177,7 @@
       "id": "prc_cub",
       "name": "Partido Republicano de Cuba",
       "acronym": "PRC",
-      "founded": "-",
+      "founded": 2002,
       "color": "#6D4C41",
       "color_secondary": "#BCAAA4",
       "logo_url": "https://static.wixstatic.com/media/d0922b_14f82dee121c45acb9b545bd52b451bd~mv2.webp/v1/fill/w_128,h_72,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/d0922b_14f82dee121c45acb9b545bd52b451bd~mv2.webp",
@@ -7183,7 +7185,7 @@
         "x": 0.82,
         "y": 0.55
       },
-      "leader": "No especificado",
+      "leader": "Ibrahim Bosch",
       "leader_img": "https://i.ytimg.com/vi/RRN9BPLxiec/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBpaIOd3Rl_vynij0xI4usaLIvtgw",
       "ideology": [
         "Conservadurismo",
@@ -7205,7 +7207,7 @@
       "id": "plc_jm_cub",
       "name": "Partido Libertario Cubano - José Martí",
       "acronym": "PLC",
-      "founded": "-",
+      "founded": 2017,
       "color": "#F9A825",
       "color_secondary": "#FFE082",
       "logo_url": "https://d3n8a8pro7vhmx.cloudfront.net/lpn/pages/2625/attachments/original/1557878708/Cuban_LP_2_years.png?1557878708",
@@ -7213,7 +7215,7 @@
         "x": 0.90,
         "y": -0.95
       },
-      "leader": "No especificado",
+      "leader": "Nelson Rodríguez Chartrand",
       "leader_img": "https://m.media-amazon.com/images/I/61pQN1M77KL._SY450_CR71%2C0%2C450%2C450_.jpg",
       "ideology": [
         "Libertarismo",
@@ -7236,15 +7238,16 @@
       "id": "fantu_cub",
       "name": "Frente Antitotalitario Unido",
       "acronym": "FANTU",
-      "founded": "-",
+      "founded": 2010,
       "color": "#455A64",
       "color_secondary": "#B0BEC5",
-      "logo_url": "https://i0.wp.com/movimientoc40.com/wp-content/uploads/2020/10/fantu-logo.jpg?fit=816%2C459&ssl=1",
+      "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiViOn9zlvHSR3TIZ9hz1fY6cnEq3XoNrAGQ&s",
       "position": {
         "x": 0.25,
         "y": 0.10
       },
       "leader": "Guillermo \"Coco\" Fariñas Hernández",
+      "leader_img": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Guillermo_Fari%C3%B1as_2014.jpg",
       "ideology": [
         "Democracia liberal",
         "Anticomunismo"
@@ -7265,7 +7268,7 @@
       "id": "pfc_cub",
       "name": "Partido Fascista de Cuba",
       "acronym": "PFC",
-      "founded": "-",
+      "founded": 2026,
       "color": "#1B1B1B",
       "color_secondary": "#6E6E6E",
       "logo_url": "https://i.ibb.co/6Jn0C5hF/PARTIDOFASCISTA.png",
@@ -7291,6 +7294,6 @@
         "medioambiente": "Política ambiental subordinada a objetivos nacionales."
       },
       "region": "cub"
-    }
+      }
   ]
 }
