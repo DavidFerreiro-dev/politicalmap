@@ -6963,6 +6963,334 @@
         "medioambiente": "Armonía entre los trabajadores y la naturaleza mediante comunas agrarias autosuficientes."
       },
       "region": "esp"
+    },
+    {
+      "id": "pcc_cub",
+      "name": "Partido Comunista de Cuba",
+      "acronym": "PCC",
+      "founded": "-",
+      "color": "#D32F2F",
+      "color_secondary": "#EF9A9A",
+      "logo_url": "https://instituciones.sld.cu/fcmcg/files/2022/02/Logo_del_Partido_Comunista_de_Cuba.svg_.png",
+      "position": {
+        "x": -0.90,
+        "y": 0.95
+      },
+      "leader": "Miguel Díaz-Canel",
+      "leader_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Miguel_Diaz-Canel_on_July_7%2C_2025_%28cropped%29.jpg/960px-Miguel_Diaz-Canel_on_July_7%2C_2025_%28cropped%29.jpg",
+      "ideology": [
+        "Marxismo-leninismo",
+        "Comunismo",
+        "Nacionalismo de izquierda"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Partido gobernante en Cuba. Defiende un modelo de partido único con fuerte control estatal de la economía y amplias restricciones en libertades civiles y políticas.",
+      "programa": {
+        "economia": "Planificación central y papel dominante del Estado en sectores estratégicos.",
+        "social": "Prioridad al orden político y al control institucional sobre la disidencia.",
+        "territorial": "Modelo centralizado con estructura política unificada.",
+        "exterior": "Política de soberanía nacional y alianzas con estados afines.",
+        "medioambiente": "Gestión ambiental integrada en la planificación estatal."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "parp_cub",
+      "name": "Arco Progresista",
+      "acronym": "PARP",
+      "founded": "-",
+      "color": "#C62828",
+      "color_secondary": "#EF9A9A",
+      "logo_url": "https://cir-integracion-racial-cuba.org/wp-content/uploads/2011/02/parp.jpeg",
+      "position": {
+        "x": -0.55,
+        "y": -0.20
+      },
+      "leader": "Manuel Cuesta Morúa",
+      "leader_img": "https://i0.wp.com/efe.com/wp-content/uploads/2026/02/Manuel-Cuesta-Morua-1.webp?fit=900%2C624&ssl=1",
+      "ideology": [
+        "Socialdemocracia",
+        "Socialismo democrático"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Oposición de izquierda democrática que promueve libertades civiles amplias con una economía mixta y fuerte componente redistributivo.",
+      "programa": {
+        "economia": "Economía mixta con regulación estatal y políticas de justicia social.",
+        "social": "Defensa de libertades civiles, derechos humanos y pluralismo político.",
+        "territorial": "Reformas institucionales para un sistema democrático multipartidista.",
+        "exterior": "Cooperación internacional y apertura cívica.",
+        "medioambiente": "Políticas públicas de sostenibilidad con enfoque social."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "psd_cub",
+      "name": "Partido Solidaridad Democrática",
+      "acronym": "PSD",
+      "founded": "-",
+      "color": "#1976D2",
+      "color_secondary": "#90CAF9",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/e/ec/DSP_Liberal_International.jpg",
+      "position": {
+        "x": -0.15,
+        "y": -0.10
+      },
+      "leader": "No especificado",
+      "ideology": [
+        "Socioliberalismo",
+        "Centrismo"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Formación de centro con enfoque socioliberal que impulsa derechos civiles, democracia plural y economía social de mercado.",
+      "programa": {
+        "economia": "Economía social de mercado con promoción de emprendimiento y competencia.",
+        "social": "Garantías de derechos civiles y libertades públicas.",
+        "territorial": "Transición institucional hacia democracia representativa.",
+        "exterior": "Inserción internacional basada en cooperación económica y democrática.",
+        "medioambiente": "Marco regulatorio ambiental compatible con crecimiento sostenible."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "somos_mas_cub",
+      "name": "Movimiento Político Somos+",
+      "acronym": "SOMOS+",
+      "founded": "-",
+      "color": "#00ACC1",
+      "color_secondary": "#80DEEA",
+      "logo_url": "https://www.somosmascuba.com/wp-content/uploads/2025/01/SOMOS-MAS-ElCambioEresTu-LOGO.png",
+      "position": {
+        "x": 0.40,
+        "y": -0.85
+      },
+      "leader": "Dariel Fernández",
+      "leader_img": "https://calleochonews.com/wp-content/uploads/2025/08/Dariel-2-1-1.jpg",
+      "ideology": [
+        "Liberalismo democrático",
+        "Progresismo"
+      ],
+      "seats_congress": 0,
+      "website": "https://www.somosmascuba.com",
+      "description": "Movimiento de perfil liberal y juvenil que reivindica libertad de expresión, acceso abierto a internet y mayor apertura económica.",
+      "programa": {
+        "economia": "Apertura de mercado, apoyo a iniciativa privada y modernización productiva.",
+        "social": "Plena libertad de expresión, derechos civiles y conectividad sin censura.",
+        "territorial": "Reformas políticas para competencia electoral y participación ciudadana.",
+        "exterior": "Apertura internacional y cooperación tecnológica.",
+        "medioambiente": "Impulso a innovación y sostenibilidad en políticas urbanas y digitales."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "unpacu_cub",
+      "name": "Unión Patriótica de Cuba",
+      "acronym": "UNPACU",
+      "founded": "-",
+      "color": "#2E7D32",
+      "color_secondary": "#A5D6A7",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/UNPACU_Acronym_%26_Name_%26_Flag_Logo_6_-_Patriotic_Union_of_Cuba.jpg",
+      "position": {
+        "x": 0.15,
+        "y": -0.20
+      },
+      "leader": "José Daniel Ferrer",
+      "leader_img": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Jos%C3%A9_Daniel_Ferrer_en_Santiago_de_Cuba.jpg",
+      "ideology": [
+        "Democracia liberal",
+        "Derechos humanos"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Coalición opositora de enfoque liberal centrada en derechos humanos, libertades civiles y apertura económica.",
+      "programa": {
+        "economia": "Impulso a libre empresa y protección de la propiedad privada.",
+        "social": "Prioridad a libertades civiles, derechos humanos y pluralismo.",
+        "territorial": "Cambio institucional hacia democracia multipartidista.",
+        "exterior": "Vinculación con redes internacionales de derechos humanos.",
+        "medioambiente": "Incorporación de estándares ambientales en la reconstrucción económica."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "mcl_cub",
+      "name": "Movimiento Cristiano Liberación",
+      "acronym": "MCL",
+      "founded": "-",
+      "color": "#F57C00",
+      "color_secondary": "#FFCC80",
+      "logo_url": "https://mcliberacion.org/logo-mcl/",
+      "position": {
+        "x": 0.55,
+        "y": 0.35
+      },
+      "leader": "José de la Luz Cardet",
+      "leader_img": "https://mcliberacion.org/wp-content/uploads/cardet-jose-de-la-luz.jpg",
+      "ideology": [
+        "Democracia cristiana"
+      ],
+      "seats_congress": 0,
+      "website": "https://mcliberacion.org",
+      "description": "Movimiento opositor de inspiración democristiana, conocido por el Proyecto Varela y por combinar reformas de mercado con valores sociales tradicionales.",
+      "programa": {
+        "economia": "Promoción de propiedad privada y economía de mercado con responsabilidad social.",
+        "social": "Defensa de derechos civiles desde la doctrina social cristiana.",
+        "territorial": "Apertura democrática y reconocimiento de pluralismo político.",
+        "exterior": "Relación con redes democristianas y organismos internacionales.",
+        "medioambiente": "Desarrollo sostenible con enfoque comunitario."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "pdc_cub",
+      "name": "Partido Demócrata Cristiano de Cuba",
+      "acronym": "PDC",
+      "founded": "-",
+      "color": "#1565C0",
+      "color_secondary": "#90CAF9",
+      "logo_url": "https://scontent-mad1-1.xx.fbcdn.net/v/t39.30808-6/504418401_1024700176438557_2403733339175637531_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=BgclYRjKMb0Q7kNvwG47KVv&_nc_oc=Adotm37MYuf7y2Fyr4SF_mVcXBojWm6lvHBsBFPVkjYrowcKrbJkhtbLVIdMKZXV9DU&_nc_zt=23&_nc_ht=scontent-mad1-1.xx&_nc_gid=VRp2Q0slWQ7kh_yEZedsGg&_nc_ss=7b2a8&oh=00_Af6_YR9l2gMuA4yH-Bzs3UrvfT28IndPYSdc6uadvM6HpQ&oe=69FE7ABC",
+      "position": {
+        "x": 0.72,
+        "y": 0.45
+      },
+      "leader": "Elena Larrinaga de Luis",
+      "ideology": [
+        "Democracia cristiana"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Partido democristiano vinculado al exilio, con énfasis en libre mercado, institucionalidad democrática y agenda social conservadora o moderada.",
+      "programa": {
+        "economia": "Economía de mercado y seguridad jurídica para inversión y propiedad.",
+        "social": "Enfoque social democristiano con valores comunitarios y pluralismo político.",
+        "territorial": "Reconstrucción institucional y descentralización administrativa gradual.",
+        "exterior": "Cooperación con redes demócrata-cristianas internacionales.",
+        "medioambiente": "Políticas de conservación con responsabilidad intergeneracional."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "prc_cub",
+      "name": "Partido Republicano de Cuba",
+      "acronym": "PRC",
+      "founded": "-",
+      "color": "#6D4C41",
+      "color_secondary": "#BCAAA4",
+      "logo_url": "https://static.wixstatic.com/media/d0922b_14f82dee121c45acb9b545bd52b451bd~mv2.webp/v1/fill/w_128,h_72,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/d0922b_14f82dee121c45acb9b545bd52b451bd~mv2.webp",
+      "position": {
+        "x": 0.82,
+        "y": 0.55
+      },
+      "leader": "No especificado",
+      "leader_img": "https://i.ytimg.com/vi/RRN9BPLxiec/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBpaIOd3Rl_vynij0xI4usaLIvtgw",
+      "ideology": [
+        "Conservadurismo",
+        "Nacionalismo"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Formación de derecha conservadora y nacionalista que prioriza libre empresa y orden institucional con posiciones morales tradicionales.",
+      "programa": {
+        "economia": "Capitalismo de mercado y reducción de trabas regulatorias.",
+        "social": "Enfoque conservador en valores y orden social.",
+        "territorial": "Fortalecimiento del Estado de derecho y transición institucional.",
+        "exterior": "Relaciones exteriores orientadas a inversión y cooperación democrática.",
+        "medioambiente": "Conservación ligada a desarrollo económico nacional."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "plc_jm_cub",
+      "name": "Partido Libertario Cubano - José Martí",
+      "acronym": "PLC",
+      "founded": "-",
+      "color": "#F9A825",
+      "color_secondary": "#FFE082",
+      "logo_url": "https://d3n8a8pro7vhmx.cloudfront.net/lpn/pages/2625/attachments/original/1557878708/Cuban_LP_2_years.png?1557878708",
+      "position": {
+        "x": 0.90,
+        "y": -0.95
+      },
+      "leader": "No especificado",
+      "leader_img": "https://m.media-amazon.com/images/I/61pQN1M77KL._SY450_CR71%2C0%2C450%2C450_.jpg",
+      "ideology": [
+        "Libertarismo",
+        "Minarquismo",
+        "Anarcocapitalismo"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Partido libertario que defiende mínima intervención estatal, máxima libertad económica y amplias libertades personales.",
+      "programa": {
+        "economia": "Libre mercado sin restricciones y reducción drástica del Estado.",
+        "social": "Máxima libertad individual y de expresión.",
+        "territorial": "Estado mínimo orientado a funciones básicas.",
+        "exterior": "Apertura comercial y cooperación voluntaria entre naciones.",
+        "medioambiente": "Enfoques de mercado para gestión de recursos y propiedad."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "fantu_cub",
+      "name": "Frente Antitotalitario Unido",
+      "acronym": "FANTU",
+      "founded": "-",
+      "color": "#455A64",
+      "color_secondary": "#B0BEC5",
+      "logo_url": "https://i0.wp.com/movimientoc40.com/wp-content/uploads/2020/10/fantu-logo.jpg?fit=816%2C459&ssl=1",
+      "position": {
+        "x": 0.25,
+        "y": 0.10
+      },
+      "leader": "Guillermo \"Coco\" Fariñas Hernández",
+      "ideology": [
+        "Democracia liberal",
+        "Anticomunismo"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Organización antitotalitaria de amplio espectro centrada en la acción no violenta, los derechos civiles y la protección de la propiedad privada.",
+      "programa": {
+        "economia": "Defensa de propiedad privada y apertura a la libre iniciativa.",
+        "social": "Lucha no violenta por derechos civiles plenos y libertades públicas.",
+        "territorial": "Reforma institucional para democracia y pluralidad.",
+        "exterior": "Vinculación con redes internacionales pro derechos humanos.",
+        "medioambiente": "Marco ambiental incorporado a la reconstrucción institucional."
+      },
+      "region": "cub"
+    },
+    {
+      "id": "pfc_cub",
+      "name": "Partido Fascista de Cuba",
+      "acronym": "PFC",
+      "founded": "-",
+      "color": "#1B1B1B",
+      "color_secondary": "#6E6E6E",
+      "logo_url": "https://i.ibb.co/6Jn0C5hF/PARTIDOFASCISTA.png",
+      "position": {
+        "x": 0.98,
+        "y": 0.95
+      },
+      "leader": "Christopher Denis Crispin Ruiz",
+      "leader_img": "https://scontent-mad2-1.xx.fbcdn.net/v/t39.30808-6/468982067_592199823492126_7292964287143888375_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=VxbRV3eoejkQ7kNvwGd-q8B&_nc_oc=AdqMi1kt4yaz4DjBItxrzIxvUAsTmn5KmpuY0nBfLnwfImIij8U22IPcI5P5xULbZHA&_nc_zt=23&_nc_ht=scontent-mad2-1.xx&_nc_gid=uPVMmhBN_kBCOp7K-KYdpw&_nc_ss=7b2a8&oh=00_Af7AV7ZcI3-YalJOEPyCL53SJko0FxK-R4uHZ5_k_dEy1Q&oe=69FE6AFA",
+      "ideology": [
+        "Fascismo",
+        "Extrema derecha",
+        "Comunitarismo autoritario"
+      ],
+      "seats_congress": 0,
+      "website": "#",
+      "description": "Partido ubicado en la extrema derecha comunitarista/autoritaria según la clasificación aportada.",
+      "programa": {
+        "economia": "Intervención estatal autoritaria combinada con nacionalismo económico.",
+        "social": "Enfoque identitario y de orden social rígido.",
+        "territorial": "Centralización política fuerte y liderazgo jerárquico.",
+        "exterior": "Nacionalismo político y rechazo de marcos supranacionales.",
+        "medioambiente": "Política ambiental subordinada a objetivos nacionales."
+      },
+      "region": "cub"
     }
   ]
 }

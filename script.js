@@ -275,7 +275,8 @@ function setupRegionSwitcher() {
       uk:  'Reino Unido - Posicionamiento ideológico - 2024-2026',
       ita: 'Italia - Posicionamiento ideológico - 2024-2026',
       chi: 'Chile - Posicionamiento ideológico - 2024-2026',
-      per: 'Perú - Posicionamiento ideológico - 2024-2026'
+      per: 'Perú - Posicionamiento ideológico - 2024-2026',
+      cub: 'Cuba - Posicionamiento ideológico - 2024-2026'
     };
     var tabTitles = {
       esp: 'Mapa de política de España',
@@ -288,7 +289,8 @@ function setupRegionSwitcher() {
       uk:  'Mapa de política de Reino Unido',
       ita: 'Mapa de política de Italia',
       chi: 'Mapa de política de Chile',
-      per: 'Mapa de política de Perú'
+      per: 'Mapa de política de Perú',
+      cub: 'Mapa de política de Cuba'
     };
     if (sub) sub.textContent = labels[currentRegion] || '';
     document.title = tabTitles[currentRegion] || 'MAPA POLÍTICO';
@@ -512,7 +514,8 @@ function buildSideList(parties) {
     uk: 'Reino Unido',
     ita: 'Italia',
     chi: 'Chile',
-    per: 'Perú'
+    per: 'Perú',
+    cub: 'Cuba'
   };
   regionName.textContent = regionLabels[currentRegion] || 'Región';
   total.textContent = 'Total: ' + parties.length;
