@@ -7294,6 +7294,39 @@
         "medioambiente": "Política ambiental subordinada a objetivos nacionales."
       },
       "region": "cub"
-      }
+      },
+    {
+  "id": "nsm_usa",
+  "name": "Movimiento Nacional Socialista",
+  "acronym": "NSM",
+  "founded": 1974,
+  "color": "#000000",
+  "color_secondary": "#CC0000",
+  "logo_url": "https://en.wikipedia.org/wiki/File:Blason_du_National_Socialist_Movement_usa.svg",
+  "position": {
+    "x": 0.60,
+    "y": 0.95
+  },
+  "leader": "Burt Colucci",
+  "leader_img": "",
+  "ideology": [
+    "Neonazismo",
+    "Supremacismo blanco",
+    "Fascismo",
+    "Antisemitismo"
+  ],
+  "seats_congress": 0,
+  "website": "",
+  "description": "Organización neonazi y supremacista blanca que opera en los Estados Unidos. Aboga por la creación de un etnoestado blanco, promueve el antisemitismo y el racismo extremo, y basa su estética, retórica y estructura organizativa en el Partido Nazi alemán histórico.",
+  "programa": {
+    "economia": "Nacionalismo económico, proteccionismo, rechazo al capitalismo globalizado y políticas laborales diseñadas para favorecer exclusivamente a ciudadanos blancos de ascendencia europea.",
+    "social": "Creación de un etnoestado blanco, deportación de ciudadanos no blancos e inmigrantes, supresión total de los derechos LGTBI+ y promoción de la eugenesia y el separatismo racial.",
+    "territorial": "Instauración de un Estado autoritario unipartidista, supresión de la democracia liberal y control estricto de las fronteras físicas e ideológicas.",
+    "exterior": "Aislacionismo radical, fin de toda ayuda exterior (con especial énfasis en retirar cualquier apoyo a Israel) y salida inmediata de todas las organizaciones y tratados internacionales.",
+    "medioambiente": "Ideología de 'sangre y suelo' (Blut und Boden), que vincula la conservación de la naturaleza y las tierras nacionales exclusivamente con la preservación de la pureza racial."
+  },
+  "region": "usa"
+    }
+    }
   ]
 }
