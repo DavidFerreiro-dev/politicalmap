@@ -66,7 +66,6 @@ var HIST_IDS = [
   'cnt_fai', 'cnt',
   // Otros extintos (por si acaso)
   'cj_esp', 'cj'
-  'cedade_esp', 'cedade'
 ];
 
 // ── Zoom / Pan state ──
