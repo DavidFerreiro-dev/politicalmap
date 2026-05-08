@@ -7302,7 +7302,7 @@
   "founded": 1974,
   "color": "#000000",
   "color_secondary": "#CC0000",
-  "logo_url": "https://en.wikipedia.org/wiki/File:Blason_du_National_Socialist_Movement_usa.svg",
+  "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Blason_du_National_Socialist_Movement_usa.svg/1280px-Blason_du_National_Socialist_Movement_usa.svg.png",
   "position": {
     "x": 0.60,
     "y": 0.95
@@ -7326,6 +7326,39 @@
     "medioambiente": "Ideología de 'sangre y suelo' (Blut und Boden), que vincula la conservación de la naturaleza y las tierras nacionales exclusivamente con la preservación de la pureza racial."
   },
   "region": "usa"
+    },
+    {
+  "id": "cedade_esp",
+  "name": "Círculo Español de Amigos de Europa",
+  "acronym": "CEDADE",
+  "founded": 1966,
+  "color": "#000000",
+  "color_secondary": "#FF0000",
+  "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Flag_of_the_Spanish_Circle_of_Friends_of_Europe.svg/960px-Flag_of_the_Spanish_Circle_of_Friends_of_Europe.svg.png",
+  "position": {
+    "x": 0.70,
+    "y": 0.95
+  },
+  "leader": "Pedro Varela",
+  "leader_img": "",
+  "ideology": [
+    "Neonazismo",
+    "Fascismo",
+    "Paneuropeísmo",
+    "Antisemitismo"
+  ],
+  "seats_congress": 0,
+  "website": "",
+  "description": "Grupo de ideología nacionalsocialista fundado en Barcelona en 1966 y disuelto en 1993. Constituyó una red internacional de difusión de propaganda neonazi y negacionista. Mantuvo fuertes vínculos con figuras históricas del fascismo europeo como Léon Degrelle y excombatientes de la División Azul.",
+  "programa": {
+    "economia": "Corporativismo fascista y anticapitalismo de corte nacionalsocialista, rechazando tanto la economía de libre mercado como el marxismo, a favor de un sindicalismo nacional.",
+    "social": "Defensa de la pureza racial, antisemitismo extremo, promoción activa del negacionismo del Holocausto y supresión de las minorías y los derechos LGTBI+.",
+    "territorial": "Abolición de la democracia liberal parlamentaria. Promoción de un paneuropeísmo basado en criterios raciales (una 'Europa de las etnias' o 'Europa blanca') por encima de los Estados-nación tradicionales.",
+    "exterior": "Antiamericanismo y antisovietismo. Creación de lazos internacionales para tejer una red fascista europea y global (colaborando con grupos como Jeune Europe).",
+    "medioambiente": "Ecologismo profundamente ligado a la ideología de 'sangre y suelo' (Blut und Boden) y al misticismo esotérico nazi, donde la conservación del territorio es inseparable de la raza."
+  },
+  "region": "esp"
     }
+    
   ]
 }
